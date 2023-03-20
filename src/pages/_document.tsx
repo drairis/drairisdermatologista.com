@@ -51,7 +51,7 @@ export default class MyDocument extends Document {
           />
           {isProduction && (
             <>
-              {/* <script async src="/scripts/facebook.js" />
+              <script async src="/scripts/facebook.js" />
               <script async src="/scripts/gtm.js" />
               <noscript>
                 <img
@@ -61,24 +61,24 @@ export default class MyDocument extends Document {
                   alt=""
                   src="https://www.facebook.com/tr?id=1332188390957268&ev=PageView&noscript=1"
                 />
-              </noscript> */}
+              </noscript>
             </>
           )}
         </Head>
         <body>
           {isProduction && (
             <>
-              {/* <noscript>
+              <noscript>
                 <iframe
-                  src="https://www.googletagmanager.com/ns.html?id=GTM-KK8XHTL"
-                  height={0}
-                  width={0}
+                  src="https://www.googletagmanager.com/ns.html?id=GTM-5RW64L4"
+                  height="0"
+                  width="0"
                   style={{
                     display: "none",
                     visibility: "hidden",
                   }}
                 ></iframe>
-              </noscript> */}
+              </noscript>
             </>
           )}
           {getColorModeInitScriptElement()}
