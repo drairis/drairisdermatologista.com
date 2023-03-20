@@ -1,5 +1,3 @@
-import { RichTextBlock } from "prismic-reactjs";
-
 export const formatPhone = (phone: string): string => {
   return phone
     .replace(/\D/g, "")
@@ -17,11 +15,6 @@ export const removePhoneFormat = (phone: string): string => {
     .replace(" ", "");
 };
 
-export const formatPrismicTags = (
-  tags: { tag: RichTextBlock[] }[]
-): string[] => {
-  const filteredTags = tags.filter((item) => !!item.tag[0]?.text) as {
-    tag: { text: string }[];
-  }[];
-  return filteredTags.map((item) => item.tag[0]?.text);
+export const formatOnlyNumbers = (value: string): string => {
+  return value.replace(/\D/g, "");
 };

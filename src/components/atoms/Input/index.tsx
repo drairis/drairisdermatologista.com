@@ -1,16 +1,38 @@
-import { Container } from "./styles";
-import TextField from "@mui/material/TextField";
-import { TextFieldProps } from "@mui/material/TextField";
-import { Variants } from "framer-motion";
+import { forwardRef } from "react";
+import { TextField, TextFieldProps } from "@mui/material";
+import styled, { css } from "styled-components";
 
-type InputProps = TextFieldProps & {
-  variants?: Variants;
-};
+export const Container = styled.div`
+  ${() => css`
+    width: 100%;
 
-export const Input = ({ variants, ...props }: InputProps) => {
+    fieldset {
+      width: 100%;
+      height: 100%;
+    }
+
+    input {
+      position: relative;
+      z-index: 1;
+    }
+
+    label {
+      z-index: 2;
+    }
+
+    *::before,
+    *::after {
+      width: 100%;
+    }
+  `}
+`;
+
+const InputElement = (props: TextFieldProps, ref: any) => {
   return (
-    <Container variants={variants}>
-      <TextField fullWidth variant="filled" {...props} />
+    <Container className={props.className}>
+      <TextField fullWidth {...props} ref={ref} />
     </Container>
   );
 };
+
+export const Input = forwardRef(InputElement);

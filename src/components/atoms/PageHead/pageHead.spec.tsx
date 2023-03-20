@@ -1,5 +1,5 @@
 import { render, waitFor } from "@testing-library/react";
-import { Container, PageHead } from "../.";
+import { PageHead } from "../.";
 
 jest.mock("next/head", () => {
   return {
@@ -14,9 +14,9 @@ jest.mock("next/head", () => {
 describe("PageHead", () => {
   it("should render PageHead component", async () => {
     render(
-      <Container>
+      <>
         <PageHead title="usereact" />
-      </Container>,
+      </>,
       { container: document.head }
     );
 
@@ -27,7 +27,7 @@ describe("PageHead", () => {
 
   it("should render PageHead component with meta tags", async () => {
     const element = render(
-      <Container>
+      <div>
         <PageHead
           title="usereact"
           description="usereact is a react library for building user interfaces"
@@ -41,7 +41,7 @@ describe("PageHead", () => {
             tags: ["react", "library"],
           }}
         />
-      </Container>,
+      </div>,
       { container: document.head }
     );
 

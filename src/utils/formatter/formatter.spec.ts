@@ -1,5 +1,4 @@
-import { RichTextBlock } from "prismic-reactjs";
-import { formatPhone, removePhoneFormat, formatPrismicTags } from ".";
+import { formatPhone, removePhoneFormat } from ".";
 
 // create a describe block for each function to test
 describe("formatPhone", () => {
@@ -15,18 +14,5 @@ describe("formatPhone", () => {
     const expected = "1234567890";
     const actual = removePhoneFormat(phone);
     expect(actual).toBe(expected);
-  });
-});
-
-describe("formatPrismicTags", () => {
-  it("should format tags", () => {
-    const tags = [
-      { tag: [{ text: "tag1" }] as RichTextBlock[] },
-      { tag: [{ text: "tag2" }] as RichTextBlock[] },
-      { tag: [{}] as RichTextBlock[] },
-    ];
-    const expected = ["tag1", "tag2"];
-    const actual = formatPrismicTags(tags);
-    expect(actual).toEqual(expected);
   });
 });

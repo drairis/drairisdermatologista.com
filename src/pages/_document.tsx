@@ -1,20 +1,20 @@
-/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
+import {
+  getColorModeInitScriptElement,
+  ServerStyleSheet,
+} from "@xstyled/styled-components";
 import Document, {
   DocumentContext,
-  DocumentInitialProps,
+  Head,
+  Html,
   Main,
   NextScript,
-  Html,
-  Head,
 } from "next/document";
-import { ServerStyleSheet } from "styled-components";
 
-const PRODUCTION = process.env.NEXT_PUBLIC_ENVIRONMENT === "production";
+const isProduction = process.env.NEXT_PUBLIC_ENVIRONMENT === "production";
 
 export default class MyDocument extends Document {
-  static async getInitialProps(
-    ctx: DocumentContext
-  ): Promise<DocumentInitialProps> {
+  static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
 
@@ -24,7 +24,6 @@ export default class MyDocument extends Document {
           enhanceApp: (App) => (props) =>
             sheet.collectStyles(<App {...props} />),
         });
-
       const initialProps = await Document.getInitialProps(ctx);
       return {
         ...initialProps,
@@ -39,59 +38,50 @@ export default class MyDocument extends Document {
       sheet.seal();
     }
   }
+
   render() {
     return (
-      <Html lang="pt-BR">
+      <Html>
         <Head>
-          {PRODUCTION && (
-            <>
-              <script src="/scripts/analytics.js" async />
-              <script src="/scripts/facebook.js" async />
-              <script src="/scripts/hotjar.js" async />
-              <script src="/scripts/gtag.js" async />
-            </>
-          )}
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
             rel="preconnect"
             href="https://fonts.gstatic.com"
             crossOrigin="true"
           />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Patua+One&family=Quicksand:wght@300;500;600&display=swap"
-            rel="stylesheet"
-          />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          />
-
-          {PRODUCTION && (
+          {isProduction && (
             <>
+              {/* <script async src="/scripts/facebook.js" />
+              <script async src="/scripts/gtm.js" />
               <noscript>
                 <img
-                  height="1"
-                  width="1"
+                  height={1}
+                  width={1}
                   style={{ display: "none" }}
-                  src="https://www.facebook.com/tr?id=277907681159745&ev=PageView&noscript=1"
+                  alt=""
+                  src="https://www.facebook.com/tr?id=1332188390957268&ev=PageView&noscript=1"
                 />
-              </noscript>
+              </noscript> */}
             </>
           )}
         </Head>
         <body>
-          {PRODUCTION && (
+          {isProduction && (
             <>
-              <noscript>
+              {/* <noscript>
                 <iframe
-                  src="https://www.googletagmanager.com/ns.html?id=GTM-K9KKNV5"
-                  height="0"
-                  width="0"
-                  style={{ display: "none", visibility: "hidden" }}
+                  src="https://www.googletagmanager.com/ns.html?id=GTM-KK8XHTL"
+                  height={0}
+                  width={0}
+                  style={{
+                    display: "none",
+                    visibility: "hidden",
+                  }}
                 ></iframe>
-              </noscript>
+              </noscript> */}
             </>
           )}
+          {getColorModeInitScriptElement()}
           <Main />
           <NextScript />
         </body>

@@ -1,18 +1,19 @@
-import React from "react";
+/* eslint-disable @next/next/no-page-custom-font */
 import Head from "next/head";
 interface PageHeadProps {
   title: string;
   description?: string;
   image?: {
-    url: string;
-    alt: string;
+    url?: string;
+    alt?: string;
   };
   article?: {
-    published_at?: string;
-    updated_at?: string;
+    published_at: string | Date | null;
+    updated_at: string | Date | null;
     author?: string;
-    tags?: string[];
+    tags: string[];
   };
+  favicon?: string;
 }
 
 export const PageHead = ({
@@ -20,6 +21,7 @@ export const PageHead = ({
   description,
   image,
   article,
+  favicon,
 }: PageHeadProps) => {
   return (
     <Head data-testid="page-head">
@@ -38,8 +40,14 @@ export const PageHead = ({
       {/* ARTICLE */}
       <meta property="article:section" content="Blog" />
       <meta property="article:author" content={article?.author} />
-      <meta property="article:published_time" content={article?.published_at} />
-      <meta property="article:modified_time" content={article?.updated_at} />
+      <meta
+        property="article:published_time"
+        content={String(article?.published_at || "")}
+      />
+      <meta
+        property="article:modified_time"
+        content={String(article?.updated_at || "")}
+      />
       {article?.tags?.map((tag) => (
         <meta
           data-testid={`_meta_tag_${tag}`}
@@ -57,6 +65,12 @@ export const PageHead = ({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image?.url} />
       <meta name="twitter:image:alt" content={image?.alt} />
+
+      <link
+        rel="shortcut icon"
+        type="image/jpg"
+        href={favicon || "/favicon-32x32.png"}
+      />
     </Head>
   );
 };

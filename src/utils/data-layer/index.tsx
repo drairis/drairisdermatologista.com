@@ -1,4 +1,4 @@
-import { PushDataLayerProps } from "interfaces";
+import { PushDataLayerProps } from "interfaces/DataLayer";
 const enviroment = process.env.NEXT_PUBLIC_ENVIRONMENT;
 
 declare global {
